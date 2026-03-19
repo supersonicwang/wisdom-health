@@ -1,0 +1,29 @@
+# 模型微调依赖包
+
+# 核心框架
+transformers>=4.35.0
+torch>=2.0.0
+datasets>=2.14.0
+
+# LoRA 和参数高效微调
+peft>=0.7.0
+
+# 训练优化
+accelerate>=0.25.0
+bitsandbytes>=0.41.0  # 量化支持（Linux/Windows）
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 可选：LLaMA Factory（推荐）
+# llama-factory>=0.5.0
+
+# 可选：监控和日志
+wandb>=0.16.0
+tensorboard>=2.15.0
+
+# 工具
+tqdm>=4.66.0
+sentencepiece>=0.1.99
+protobuf>=4.25.0

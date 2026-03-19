@@ -1,0 +1,46 @@
+# LoRA 微调配置示例
+# 适用于 LLaMA Factory
+
+### 模型设置
+model_name_or_path: Qwen/Qwen2-7B-Instruct  # 基础模型路径
+adapter_name_or_path: null
+
+### 训练方法
+stage: sft                    # 监督微调
+do_train: true
+finetuning_type: lora        # 使用 LoRA
+lora_target: all             # 微调所有注意力层
+lora_rank: 8                 # LoRA 秩（越大效果越好但内存占用越多）
+lora_alpha: 16
+lora_dropout: 0.05
+
+### 数据集
+dataset: your_dataset        # 数据集名称，需要在 datasets/ 中定义
+template: qwen              # 对话模板
+cutoff_len: 2048            # 最大序列长度
+max_samples: 10000          # 最大样本数
+overwrite_cache: true
+preprocessing_num_workers: 4
+
+### 训练参数
+output_dir: ../models/qwen2-7b-finetuned
+overwrite_output_dir: true
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 4
+learning_rate: 5.0e-5
+num_train_epochs: 3
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+logging_steps: 10
+save_steps: 500
+save_total_limit: 3
+
+### 优化设置
+fp16: true                   # Mac 用户改为 bf16
+gradient_checkpointing: true # 减少内存占用
+
+### 评估
+val_size: 0.1
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 500

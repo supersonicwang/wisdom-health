@@ -1,0 +1,20 @@
+# 本地部署依赖包
+
+# Web 服务器
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+httpx>=0.25.0
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# 如果使用 transformers 直接推理
+transformers>=4.35.0
+torch>=2.0.0
+accelerate>=0.25.0
+
+# 可选：PEFT 支持（加载 LoRA 模型）
+# peft>=0.7.0
+
+# 数据处理
+pydantic>=2.4.0

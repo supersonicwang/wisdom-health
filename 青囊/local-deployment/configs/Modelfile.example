@@ -1,0 +1,27 @@
+# Ollama Modelfile 示例
+# 用于导入自定义微调的模型
+
+# 从本地路径导入模型
+FROM ../../model-training/models/qwen2-7b-finetuned
+
+# 设置模板（根据模型调整）
+TEMPLATE """<|system|>
+{{ .System }}
+<|user|>
+{{ .Prompt }}
+<|assistant|>
+"""
+
+# 参数配置
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER top_k 50
+PARAMETER num_predict 2048
+
+# 系统提示词
+SYSTEM """你是一个有用的 AI 助手。"""
+
+# 使用方法：
+# 1. 确保模型已训练并保存在 model-training/models/ 中
+# 2. 运行: ollama create my-custom-model -f Modelfile.example
+# 3. 使用: ollama run my-custom-model
